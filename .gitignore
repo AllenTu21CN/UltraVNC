@@ -76,3 +76,5 @@ uvnc_settings2/uvnc_settings/x64/Release
 winvnc/x64/Release
 addon/ms-logon/authSSP/buildtime.h
 addon/ms-logon/MSLogonACL/buildtime.h
+iss/x64
+iss/x32
