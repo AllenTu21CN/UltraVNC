@@ -62,3 +62,17 @@ winvnc/omnithread/Release/
 vncviewer/Release/
 repeater/.vs/
 winvnc/winvnc/VTune Profiler Results/
+
+iss/sign/create_cer.bat
+addon/ms-logon/authSSP/x64/Release
+addon/ms-logon/authadm/x64/Release
+addon/ms-logon/ldapauth/x64/Release
+addon/ms-logon/ldapauth9x/x64/Release
+addon/ms-logon/ldapauthNT4/x64/Release
+addon/ms-logon/logging/x64/Release
+addon/ms-logon/workgrpdomnt4/x64/Release
+avilog/avilog/x64/Release
+uvnc_settings2/uvnc_settings/x64/Release
+winvnc/x64/Release
+addon/ms-logon/authSSP/buildtime.h
+addon/ms-logon/MSLogonACL/buildtime.h
