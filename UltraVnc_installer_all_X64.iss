@@ -189,14 +189,20 @@ Source: "ultravnc.cer"; DestDir: {app}; Flags: deleteafterinstall
 
 ; server files
 ; winvnc.exe needs to be first here because it triggers stopping WinVNC service/app.
-Source: "repeater\repeater.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Repeater
 Source: "64\xp\winvnc.exe"; DestDir: "{app}"; DestName: "winvnc.exe"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01;  Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\vnchooks.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "64\xp\setcad.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "64\xp\setpasswd.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "64\xp\uvnc_settings.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "64\xp\testauth.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "preconfig\ultravnc.ini"; DestDir: "{app}"; Flags: onlyifdoesntexist; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "encryptionplugins\xp\64\SecureVNCPlugin64.dsm"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\ddengine64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\UVncVirtualDisplay64\*"; DestDir: "{app}\UVncVirtualDisplay64"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
-Source: "encryptionplugins\xp\64\SecureVNCPlugin64.dsm"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
-Source: "64\xp\schook64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\uvnckeyboardhelper.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "64\xp\schook64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+Source: "repeater\repeater.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Repeater
+
 ; mslogon I files
 Source: "64\xp\logging.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\authadmin.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
@@ -204,30 +210,32 @@ Source: "64\xp\workgrpdomnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replac
 Source: "64\xp\ldapauth.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\ldapauthnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\ldapauth9x.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+
 ; mslogon II files
 Source: "64\xp\authSSP.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Source: "64\xp\MSLogonACL.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
+
 ; viewer files
 Source: "64\xp\vncviewer.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Viewer
 Source: "64\UVNC_Launch.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Viewer
-Source: "64\xp\setcad.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
-Source: "64\xp\setpasswd.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
-Source: "64\xp\uvnc_settings.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
-Source: "64\xp\testauth.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
-Source: "preconfig\ultravnc.ini"; DestDir: "{app}"; Flags: onlyifdoesntexist; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 
 ; Vista doesn't have a sas.dll
 Source: "64\xp\sas.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,6.0.6000; OnlyBelowVersion: 0,6.1.7600; Components: UltraVNC_Server UltraVNC_Server_S
 
 ; winvnc.exe needs to be first here because it triggers stopping WinVNC service/app.
-Source: "repeater\repeater.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\winvnc.exe"; DestDir: "{app}"; DestName: "winvnc.exe"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+Source: "64\xp\vnchooks.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+Source: "64\xp\setcad.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+Source: "64\xp\setpasswd.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01
+Source: "64\xp\uvnc_settings.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+Source: "64\xp\testauth.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+Source: "encryptionplugins\xp\64\SecureVNCPlugin64.dsm"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\ddengine64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\UVncVirtualDisplay64\*"; DestDir: "{app}\UVncVirtualDisplay64"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
-Source: "encryptionplugins\xp\64\SecureVNCPlugin64.dsm"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
-Source: "64\xp\vnchooks.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
-Source: "64\xp\schook64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\uvnckeyboardhelper.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+Source: "64\xp\schook64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+Source: "repeater\repeater.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+
 ; mslogon I files
 Source: "64\xp\logging.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\authadmin.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
@@ -235,16 +243,14 @@ Source: "64\xp\workgrpdomnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replac
 Source: "64\xp\ldapauth.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\ldapauthnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\ldapauth9x.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+
 ; mslogon II files
 Source: "64\xp\authSSP.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\xp\MSLogonACL.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
+
 ; viewer files
 Source: "64\xp\vncviewer.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 Source: "64\UVNC_Launch.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
-Source: "64\xp\setcad.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
-Source: "64\xp\setpasswd.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01
-Source: "64\xp\uvnc_settings.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
-Source: "64\xp\testauth.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: UltraVNC_Upgrade
 
 [Icons]
 Name: "{userdesktop}\UltraVNC Server"; Filename: "{app}\winvnc.exe"; IconIndex: 0; Components: UltraVNC_Server UltraVNC_Server_S; Tasks: desktopicon
@@ -290,6 +296,7 @@ Filename: "{syswow64}\netsh"; Parameters: "firewall add portopening TCP 5800 vnc
 Filename: "{syswow64}\netsh"; Parameters: "firewall add allowedprogram ""{app}\winvnc.exe"" ""winvnc.exe"" ENABLE ALL"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: UltraVNC_Server UltraVNC_Server_S
 Filename: "{syswow64}\netsh"; Parameters: "firewall add allowedprogram ""{app}\vncviewer.exe"" ""vncviewer.exe"" ENABLE ALL"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: UltraVNC_Viewer
 Filename: "http://www.uvnc.com/downloads/ultravnc.html"; Flags: nowait postinstall shellexec runasoriginaluser skipifsilent; Description: "Show latest versions"
+
 [UninstallRun]
 Filename: "{sys}\pnputil.exe"; Parameters: "/delete-driver ""{app}\UVncVirtualDisplay64\UVncVirtualDisplay.inf"" /uninstall"; WorkingDir: "{app}\UVncVirtualDisplay64"; Flags: 64bit runhidden; StatusMsg: "Uninstalling virtual driver..."
 Filename: "certutil.exe"; Parameters: "-delstore trustedpublisher 01302f6c9f56b5a7b00d148510a5a59e"; Flags: runhidden; StatusMsg: "Removing trusted publisher..."

@@ -3,6 +3,7 @@
 #include "versionhelpers.h"
 #include "vncservice.h"
 #include <newdev.h>
+#include <memory>
 #pragma comment(lib, "Newdev.lib")
 #pragma comment(lib, "swdevice.lib")
 
