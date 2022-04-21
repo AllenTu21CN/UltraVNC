@@ -41,7 +41,7 @@ static char service_path[MAX_PATH];
 void monitor_sessions();
 void monitor_sessions_RDP();
 void Restore_after_reboot();
-char service_name[256]="uvnc_service";
+char service_name[256]="dlxx_vnc_service";
 char *app_name = "UltraVNC";
 void disconnect_remote_sessions();
 char cmdtext[256];

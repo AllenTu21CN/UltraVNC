@@ -26,7 +26,7 @@
 #include "inifile.h"
 void Set_settings_as_admin(char *mycommand);
 
-//#define INIFILE_NAME "ultravnc.ini"
+//#define INIFILE_NAME "dlxx_vnc.ini"
 
 char *g_szIniFile = 0;
 

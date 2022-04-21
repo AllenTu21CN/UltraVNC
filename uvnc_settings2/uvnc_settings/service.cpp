@@ -15,7 +15,7 @@
 
 static char service_path[MAX_PATH];
 static char service_file[MAX_PATH];
-char service_name[256]="uvnc_service";
+char service_name[256]="dlxx_vnc_service";
 char *app_name = "UltraVNC";
 #define VNCDEPENDENCIES    "Tcpip\0\0"
 
@@ -97,7 +97,7 @@ int install_service(void) {
 	pad();
 	if (!existFile(service_file))
 	{
-		 MessageBoxSecure(NULL, "Verify that winvnc.exe and uvnc_settings are in the same folder\n can not create the uvnc_service",
+		 MessageBoxSecure(NULL, "Verify that winvnc.exe and uvnc_settings are in the same folder\n can not create the dlxx_vnc_service",
             app_name, MB_ICONERROR);
 		return 1;
 	}
