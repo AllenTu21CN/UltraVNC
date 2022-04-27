@@ -123,6 +123,9 @@
       <Command>echo canceled: "C:\Program Files (x86)\Windows Kits\8.1\bin\x86\DigiCertUtil .exe" sign /sha1 7686bed45b491e41586b7d2a3c63cbd7e2f3d0ca /noInput   "$(OutDir)$(TargetName)$(TargetExt)"
 copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)gen_r_version.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -156,6 +159,9 @@ copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</C
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>jansson_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)gen_r_version.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -269,6 +275,8 @@ copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</C
     <ClInclude Include="..\ext\base\win\getopt.h" />
     <ClInclude Include="..\ext\httplib.h" />
     <ClInclude Include="..\ext\media\base\codec_type.h" />
+    <ClInclude Include="..\winvnc\r_version.h" />
+    <ClInclude Include="building.h" />
     <ClInclude Include="impl\http_server.h" />
     <ClInclude Include="impl\mgr_defines.h" />
     <ClInclude Include="impl\mgr_looper.h" />

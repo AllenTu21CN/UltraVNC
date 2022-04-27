@@ -339,5 +339,7 @@
     <ClInclude Include="utils\encrypt.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\winvnc\r_version.h" />
+    <ClInclude Include="building.h" />
   </ItemGroup>
 </Project>

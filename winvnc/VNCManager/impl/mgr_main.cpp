@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "inifile.h"
 #include "utils/utils.h"
+#include "building.h"
+#include "../winvnc/r_version.h"
 
 #include "base/log.h"
 #include "base/uuid.h"
@@ -207,6 +209,8 @@ static bool checkEnv()
         msg += g_log_path;
         T_logWinEventI(msg.c_str(), NULL);
     }
+
+    base::_warning("App version: %s-%s-%s", R_SHORT_VERSION, VCS_ID, BUILD_TIME);
 
     sprintf_s(g_ini_path, "%s\\%s", g_app_path, g_ini_name);
     if (!existFile(g_ini_path))

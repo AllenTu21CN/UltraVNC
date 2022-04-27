@@ -81,3 +81,4 @@ iss/x32/building
 winvnc/x64/Debug/
 .vscode/
 winvnc/DummyHttpServer/x64/
+winvnc/VNCManager/building.h
