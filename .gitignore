@@ -80,3 +80,4 @@ iss/x64/building
 iss/x32/building
 winvnc/x64/Debug/
 .vscode/
+winvnc/DummyHttpServer/x64/

@@ -31,6 +31,7 @@
 
 #include "winvnc.h"
 #include "vncabout.h"
+#include "r_version.h"
 
 //	[v1.0.2-jp1 fix] Load resouce from dll
 extern HINSTANCE	hInstResDLL;
@@ -173,6 +174,7 @@ vncAbout::DialogProc(HWND hwnd,
 			// Insert the build time information
 			extern char buildtime[];
 			SetDlgItemText(hwnd, IDC_BUILDTIME, buildtime);
+			SetDlgItemText(hwnd, IDC_VERSION, "WinVNC Server " R_SHORT_VERSION);
 
 			// Show the dialog
 			SetForegroundWindow(hwnd);

@@ -282,6 +282,7 @@
     <ClInclude Include="Header.h" />
     <ClInclude Include="..\..\common\UltraVncZ.h" />
     <ClInclude Include="VirtualDisplay.h" />
+    <ClInclude Include="r_version.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VTune\winvnc.vpj" />

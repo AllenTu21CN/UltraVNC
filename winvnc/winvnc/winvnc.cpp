@@ -63,6 +63,8 @@ void InitIpp();
 #define LOCALIZATION_MESSAGES   // ACT: full declaration instead on extern ones
 #include "Localization.h" // Act : add localization on messages
 
+#include "r_version.h"
+
 // Application instance and name
 HINSTANCE	hAppInstance;
 const char	*szAppName = "WinVNC";
@@ -298,8 +300,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 	memset(&info, 0, sizeof(CR_INSTALL_INFO));
 	info.cb = sizeof(CR_INSTALL_INFO);
 	info.pszAppName = _T("UVNC");
-	info.pszAppVersion = _T("1.3.2");
-	info.pszEmailSubject = _T("UVNC server 1.3.2 Error Report");
+	info.pszAppVersion = _T(R_SHORT_VERSION);
+	info.pszEmailSubject = _T("UVNC server "R_SHORT_VERSION" Error Report");
 	info.pszEmailTo = _T("uvnc@skynet.be");
 	info.uPriorities[CR_SMAPI] = 1; // Third try send report over Simple MAPI    
 	// Install all available exception handlers
