@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <tchar.h>
 
-
+#ifndef APP_NAME
+#define APP_NAME "WinVNC"
+#endif
 
 // TODO: reference additional headers your program requires here

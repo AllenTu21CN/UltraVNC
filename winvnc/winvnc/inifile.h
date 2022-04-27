@@ -28,7 +28,7 @@
 
 bool Copy_to_Temp(char *tempfile);
 bool Copy_to_Secure_from_temp(char *tempfile);
-#define INIFILE_NAME "dlxx_vnc.ini"
+#define INIFILE_NAME "vnc.ini"
 
 extern char *g_szIniFile;
 

@@ -22,6 +22,11 @@
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 //need to be added for VS 2005
+
+#ifndef APP_NAME
+#define APP_NAME "WinVNC"
+#endif
+
 #define _Gii
 #ifdef _Gii
 #ifndef WINVER                  // Specifies that the minimum required platform is Windows 7.

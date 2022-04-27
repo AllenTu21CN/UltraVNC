@@ -23,11 +23,12 @@
 //
 #include "EventLogging.h"
 
+#define APP_NAME "WinVNC"
 
 EventLogging::EventLogging()
 {
 	// returns a handle that links the source to the registry 
-	m_hEventLinker = RegisterEventSource(NULL,_T("UltraVNC"));
+	m_hEventLinker = RegisterEventSource(NULL,_T(APP_NAME));
 
 }
 
@@ -58,7 +59,7 @@ void EventLogging::AddEventSourceToRegistry(LPCTSTR lpszSourceName)
     TCHAR szKey[255] =_T("SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\");
     TCHAR szServicePath[MAX_PATH];
 
-    lstrcat(szKey, _T("UltraVNC"));
+    lstrcat(szKey, _T(APP_NAME));
 
     if(RegCreateKey(HKEY_LOCAL_MACHINE, szKey, &hk) != ERROR_SUCCESS)
     {

@@ -73,7 +73,7 @@ BOOL		fRunningFromExternalServiceRdp = false;
 //adzm 2009-06-20
 char* g_szRepeaterHost = NULL;
 
-// sf@2007 - New shutdown order handling stuff (with dlxx_vnc_service)
+// sf@2007 - New shutdown order handling stuff (with vnc_srv_service)
 bool			fShutdownOrdered = false;
 static HANDLE		hShutdownEvent = NULL;
 HANDLE		hShutdownEventcad = NULL;

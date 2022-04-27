@@ -41,8 +41,8 @@ static char service_path[MAX_PATH];
 void monitor_sessions();
 void monitor_sessions_RDP();
 void Restore_after_reboot();
-char service_name[256]="dlxx_vnc_service";
-char *app_name = "UltraVNC";
+char service_name[256]="vnc_srv_service";
+char *app_name = APP_NAME;
 void disconnect_remote_sessions();
 char cmdtext[256];
 extern int clear_console;
@@ -238,7 +238,7 @@ int install_service(void) {
 		if (myerror==ERROR_SERVICE_EXISTS)
 		{
 			//MessageBoxSecure(NULL, "Failed: Already exist",
-            //"UltraVNC", MB_ICONERROR);
+            // app_name, MB_ICONERROR);
 			CloseServiceHandle(scm);
 			return 1;
 		}
@@ -300,8 +300,7 @@ int uninstall_service(void) {
         return 1;
     }
     if(serviceStatus.dwCurrentState!=SERVICE_STOPPED) {
-        //MessageBoxSecure(NULL, "The service is still running, disable it first",
-        //    "UltraVNC", MB_ICONERROR);
+        //MessageBoxSecure(NULL, "The service is still running, disable it first", app_name, MB_ICONERROR);
         CloseServiceHandle(service);
         CloseServiceHandle(scm);
 		Sleep(2500);uninstall_service();

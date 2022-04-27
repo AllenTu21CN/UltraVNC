@@ -2,7 +2,7 @@
 #if (!defined(_WINVNC_INIFILE))
 #define _WINVNC_INIFILE
 
-#define INIFILE_NAME "dlxx_vnc.ini"
+#define INIFILE_NAME "vnc.ini"
 
 class IniFile
 {

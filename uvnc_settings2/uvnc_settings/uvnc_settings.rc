@@ -468,7 +468,7 @@ BEGIN
     BEGIN
         BLOCK "081304b0"
         BEGIN
-            VALUE "Comments", "Standalone dlxx_vnc.ini editor"
+            VALUE "Comments", "Standalone vnc.ini editor"
             VALUE "CompanyName", "uvnc bvba"
             VALUE "FileDescription", "uvnc_set Application"
             VALUE "FileVersion", "1.2.0.5"
