@@ -394,7 +394,15 @@ int MgrLooper::doChangePassword(const std::string &encoded_password, std::string
     uint8_t *data;
     uint64_t data_size;
     AES_128_ECB_0padding_base64_decrypt(aes_key, encoded_password.c_str(), &data, data_size);
-    std::string password_pair((char *)data, data_size);
+    std::string password_pair;
+    if (data[data_size - 1] == 0)
+    {
+        password_pair = (const char *)data;
+    }
+    else
+    {
+        password_pair = std::string((const char *)data, data_size);
+    }
     delete[] data;
 
     // split password pairs
