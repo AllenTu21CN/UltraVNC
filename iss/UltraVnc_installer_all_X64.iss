@@ -10,8 +10,10 @@
 #define IconPath "icon"
 #define SignPath "sign"
 #define MagicPath "x64\UltraVNC_1_3_81"
+#define OpenSSLPath "x64\OpenSSL-Win64"
 #define BuildingTime GetDateTimeString('yyyymmdd.hhnnss', '-', ':');
-#define VNC_SERVICE "dlxx_vnc_service"
+#define VNC_SRV_SERVICE "vnc_srv_service"
+#define VNC_MGR_SERVICE "vnc_mgr_service"
 
 [Setup]
 AppName={#AppName}
@@ -102,7 +104,7 @@ en.UpgradeDesc=Upgrade can be done while vnc is running
 cn.UpgradeDesc=支持热更新VNC
 
 en.ServerOnly={#AppName} Server
-cn.ServerOnly={#AppName}服务器
+cn.ServerOnly={#AppName}服务器和管理服务
 
 en.ServerOnlyS={#AppName} Server Only   "silent"
 cn.ServerOnlyS={#AppName}服务器(静默)
@@ -144,20 +146,22 @@ Name: server; Description: {cm:ServerOnly}
 ; skipped@tuyj ; Name: viewer; Description: {cm:ViewerOnly}
 ; skipped@tuyj ; Name: repeater; Description: Repeater
 ; skipped@tuyj ; Name: custom; Description: {cm:CustomInstall}; Flags: iscustom
-Name: Upgrade; Description: {cm:Upgrade}
+; skipped@tuyj ; Name: Upgrade; Description: {cm:Upgrade}
 
 [Components]
 ; skipped@tuyj ; Name: VNC_Server_S; Description: VNC Server Silent; Types: server_silent; Flags: disablenouninstallwarning
 Name: VNC_Server; Description: VNC Server; Types: server; Flags: disablenouninstallwarning
 ; skipped@tuyj ; Name: VNC_Viewer; Description: VNC Viewer; Types: full viewer; Flags: disablenouninstallwarning
 ; skipped@tuyj ; Name: VNC_Repeater; Description: VNC Repeater; Types: full repeater; Flags: disablenouninstallwarning
-Name: VNC_Upgrade; Description: {cm:UpgradeDesc}; Types: Upgrade; Flags: disablenouninstallwarning
+; skipped@tuyj ; Name: VNC_Upgrade; Description: {cm:UpgradeDesc}; Types: Upgrade; Flags: disablenouninstallwarning
 
 [Tasks]
-Name: installservice; Description: {cm:InstallService,VNC Server}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Check: isTaskChecked('installservice')
-Name: installservice; Description: {cm:InstallService,VNC Server}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Flags: unchecked; Check: not(isTaskChecked('installservice'))
-Name: startservice; Description: {cm:StartService,VNC}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Check: isTaskChecked('startservice')
-Name: startservice; Description: {cm:StartService,VNC}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Flags: unchecked; Check: not(isTaskChecked('startservice'))
+; skipped@tuyj ; Name: installservice; Description: {cm:InstallService,VNC Server}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Check: isTaskChecked('installservice')
+; skipped@tuyj ; Name: installservice; Description: {cm:InstallService,VNC Server}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Flags: unchecked; Check: not(isTaskChecked('installservice'))
+
+; skipped@tuyj ; Name: startservice; Description: {cm:StartService,VNC}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Check: isTaskChecked('startservice')
+; skipped@tuyj ; Name: startservice; Description: {cm:StartService,VNC}; GroupDescription: {cm:ServerConfig}; Components: VNC_Server ; MinVersion: 0,1; Flags: unchecked; Check: not(isTaskChecked('startservice'))
+
 Name: desktopicon; Description: {cm:CreateDesktopIcons,VNC}; Components:  VNC_Server ; Check: isTaskChecked('desktopicon')
 Name: desktopicon; Description: {cm:CreateDesktopIcons,VNC}; Components:  VNC_Server ; Flags: unchecked; Check: not(isTaskChecked('desktopicon'))
 ; skipped@tuyj ; Name: associate; Description: {cm:AssocFileExtension,VNC Viewer,.vnc}; Components: VNC_Viewer; Check: isTaskChecked('associate')
@@ -193,11 +197,18 @@ Source: "{#ExecPath}\setcad.exe"; DestDir: "{app}"; Flags: ignoreversion replace
 Source: "{#ExecPath}\setpasswd.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
 Source: "{#ExecPath}\uvnc_settings.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
 Source: "{#ExecPath}\testauth.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
-Source: "{#ConfigPath}\dlxx_vnc.ini"; DestDir: "{app}"; Flags: onlyifdoesntexist; MinVersion: 0,5.01; Components: VNC_Server
+Source: "{#ExecPath}\VNCManager.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
+Source: "{#ExecPath}\DummyHttpServer.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
+Source: "{#ConfigPath}\vnc.ini"; DestDir: "{app}"; Flags: onlyifdoesntexist; MinVersion: 0,5.01; Components: VNC_Server
+Source: "{#SignPath}\plt_rsa_pub_pkcs8.pem"; DestDir: "{app}"; Flags: onlyifdoesntexist; MinVersion: 0,5.01; Components: VNC_Server
 Source: "{#ConfigPath}\SecureVNCPlugin64.dsm"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server 
 Source: "{#MagicPath}\ddengine64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
 Source: "{#MagicPath}\UVncVirtualDisplay64\*"; DestDir: "{app}\UVncVirtualDisplay64"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server 
 Source: "{#MagicPath}\uvnckeyboardhelper.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server 
+
+Source: "{#OpenSSLPath}\openssl.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
+Source: "{#OpenSSLPath}\libssl-3-x64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
+Source: "{#OpenSSLPath}\libcrypto-3-x64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server
 ; skipped@tuyj ; Source: "64\xp\schook64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Server VNC_Server_S
 ; skipped@tuyj ; Source: "repeater\repeater.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,5.01; Components: VNC_Repeater
 
@@ -221,30 +232,30 @@ Source: "{#ExecPath}\MSLogonACL.exe"; DestDir: "{app}"; Flags: ignoreversion rep
 ; skipped@tuyj ; Source: "64\xp\sas.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace; MinVersion: 0,6.0.6000; OnlyBelowVersion: 0,6.1.7600; Components: VNC_Server VNC_Server_S
 
 ; winvnc.exe needs to be first here because it triggers stopping WinVNC service/app.
-Source: "{#ExecPath}\winvnc.exe"; DestDir: "{app}"; DestName: "winvnc.exe"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\vnchooks.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\setcad.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\setpasswd.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01
-Source: "{#ExecPath}\uvnc_settings.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\testauth.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ConfigPath}\SecureVNCPlugin64.dsm"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#MagicPath}\ddengine64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#MagicPath}\UVncVirtualDisplay64\*"; DestDir: "{app}\UVncVirtualDisplay64"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#MagicPath}\uvnckeyboardhelper.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\winvnc.exe"; DestDir: "{app}"; DestName: "winvnc.exe"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\vnchooks.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\setcad.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\setpasswd.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\uvnc_settings.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\testauth.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ConfigPath}\SecureVNCPlugin64.dsm"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#MagicPath}\ddengine64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#MagicPath}\UVncVirtualDisplay64\*"; DestDir: "{app}\UVncVirtualDisplay64"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#MagicPath}\uvnckeyboardhelper.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
 ; skipped@tuyj ; Source: "64\xp\schook64.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
 ; skipped@tuyj ; Source: "repeater\repeater.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
 
 ; mslogon I files
-Source: "{#ExecPath}\logging.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\authadmin.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\workgrpdomnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\ldapauth.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\ldapauthnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\ldapauth9x.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\logging.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\authadmin.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\workgrpdomnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\ldapauth.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\ldapauthnt4.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\ldapauth9x.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
 
 ; mslogon II files
-Source: "{#ExecPath}\authSSP.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
-Source: "{#ExecPath}\MSLogonACL.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\authSSP.dll"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
+; skipped@tuyj ; Source: "{#ExecPath}\MSLogonACL.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
 
 ; viewer files
 ; skipped@tuyj ; Source: "64\xp\vncviewer.exe"; DestDir: "{app}"; Flags: ignoreversion replacesameversion restartreplace onlyifdestfileexists; MinVersion: 0,5.01; Components: VNC_Upgrade
@@ -271,6 +282,7 @@ Name: "{group}\{#AppName} Server"; Filename: "{app}\WinVNC.exe"; WorkingDir: "{a
 ;Name: {group}\{#AppName} Server\Start WinVNC Service; FileName: {app}\WinVNC.exe; Parameters: -startservice; WorkingDir: {app}; Components: VNC_Server VNC_Server_S
 ;Name: {group}\{#AppName} Server\Stop WinVNC Service; FileName: {app}\WinVNC.exe; Parameters: -stopservice; WorkingDir: {app}; Components: VNC_Server VNC_Server_S
 Name: "{group}\{#AppName} Server Settings"; Filename: "{app}\uvnc_settings.exe"; WorkingDir: "{app}"; Components: VNC_Server 
+Name: "{group}\{#AppName} Server Manager"; Filename: "{app}\VNCManager.exe"; WorkingDir: "{app}"; Components: VNC_Server 
 
 [Registry]
 ; skipped@tuyj ; Root: HKCR; Subkey: .vnc; ValueType: string; ValueName: ; ValueData: VncViewer.Config; Flags: uninsdeletevalue; Tasks: associate
@@ -281,27 +293,45 @@ Name: "{group}\{#AppName} Server Settings"; Filename: "{app}\uvnc_settings.exe";
 [Run]
 Filename: "certutil.exe"; Parameters: "-addstore ""TrustedPublisher"" ""{app}\allen_tu.cer"""; Flags: runhidden; StatusMsg: "Adding trusted publisher..."; Components: VNC_Server 
 Filename: "{app}\WinVNC.exe"; Parameters: "-installdriver"; Flags: runhidden; StatusMsg: "Installing virtual driver..."; Components: VNC_Server 
-Filename: "certutil.exe"; Parameters: "-delstore trustedpublisher 01302f6c9f56b5a7b00d148510a5a59e"; Flags: runhidden; StatusMsg: "Removing trusted publisher..."; Components: VNC_Server 
+Filename: "certutil.exe"; Parameters: "-delstore trustedpublisher bfee2b83f804ffa94b677f96bbf8de09"; Flags: runhidden; StatusMsg: "Removing trusted publisher..."; Components: VNC_Server 
 
 Filename: "{app}\setpasswd.exe"; Parameters: "{param:setpasswd|}"; Flags: runhidden; Components: VNC_Server 
 Filename: "{app}\setcad.exe"; Flags: runhidden; Components: VNC_Server 
-Filename: "{app}\WinVNC.exe"; Parameters: "-install"; Flags: runhidden; StatusMsg: "{cm:Registering, {cm:AppName}}"; Components: VNC_Server ; Tasks: installservice
-Filename: "{app}\winvnc.exe"; Flags: nowait postinstall skipifsilent; Description: "{cm:LaunchProgram,{cm:AppName}}"; Components: VNC_Server ; Tasks: not installservice
 
-Filename: "net"; Parameters: "start {#VNC_SERVICE}"; Flags: runhidden; StatusMsg: "{cm:Starting,{cm:AppName}}"; Components: VNC_Server ; Tasks: startservice
+Filename: "{app}\WinVNC.exe"; Parameters: "-install"; Flags: runhidden; StatusMsg: "{cm:Registering, {cm:AppName}}"; Components: VNC_Server
+; skipped@tuyj ; Filename: "{app}\WinVNC.exe"; Parameters: "-install"; Flags: runhidden; StatusMsg: "{cm:Registering, {cm:AppName}}"; Components: VNC_Server ; Tasks: installservice
+; skipped@tuyj ; Filename: "{app}\winvnc.exe"; Flags: nowait postinstall skipifsilent; Description: "{cm:LaunchProgram,{cm:AppName}}"; Components: VNC_Server ; Tasks: not installservice
+Filename: "{app}\VNCManager.exe"; Parameters: "-install_mgr_service"; Flags: runhidden; StatusMsg: "{cm:Registering, {cm:AppName}}"; Components: VNC_Server
+
+Filename: "net"; Parameters: "start {#VNC_SRV_SERVICE}"; Flags: runhidden; StatusMsg: "{cm:Starting,{cm:AppName}}"; Components: VNC_Server
+; skipped@tuyj ; Filename: "net"; Parameters: "start {#VNC_SRV_SERVICE}"; Flags: runhidden; StatusMsg: "{cm:Starting,{cm:AppName}}"; Components: VNC_Server ; Tasks: startservice
+Filename: "{app}\VNCManager.exe"; Parameters: "-start_mgr_service"; Flags: runhidden; StatusMsg: "{cm:Starting,{cm:AppName}}"; Components: VNC_Server
+
 Filename: "{syswow64}\netsh"; Parameters: "firewall add portopening TCP 5900 vnc5900"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
 Filename: "{syswow64}\netsh"; Parameters: "firewall add portopening TCP 5800 vnc5800"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
+Filename: "{syswow64}\netsh"; Parameters: "firewall add portopening TCP 15900 vnc15900"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
+Filename: "{syswow64}\netsh"; Parameters: "firewall add portopening TCP 15800 vnc15800"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
 Filename: "{syswow64}\netsh"; Parameters: "firewall add allowedprogram ""{app}\winvnc.exe"" ""winvnc.exe"" ENABLE ALL"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
+Filename: "{syswow64}\netsh"; Parameters: "firewall add allowedprogram ""{app}\VNCManager.exe"" ""VNCManager.exe"" ENABLE ALL"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
 ; skipped@tuyj ; Filename: "{syswow64}\netsh"; Parameters: "firewall add allowedprogram ""{app}\vncviewer.exe"" ""vncviewer.exe"" ENABLE ALL"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Viewer
 ; skipped@tuyj ; Filename: "http://www.uvnc.com/downloads/ultravnc.html"; Flags: nowait postinstall shellexec runasoriginaluser skipifsilent; Description: "Show latest versions"
 
 [UninstallRun]
 Filename: "{sys}\pnputil.exe"; Parameters: "/delete-driver ""{app}\UVncVirtualDisplay64\UVncVirtualDisplay.inf"" /uninstall"; WorkingDir: "{app}\UVncVirtualDisplay64"; Flags: 64bit runhidden; StatusMsg: "Uninstalling virtual driver..."
-Filename: "certutil.exe"; Parameters: "-delstore trustedpublisher 01302f6c9f56b5a7b00d148510a5a59e"; Flags: runhidden; StatusMsg: "Removing trusted publisher..."
-Filename: "net"; Parameters: "stop {#VNC_SERVICE}"; Flags: runhidden; StatusMsg: "{cm:Stopping, {cm:AppName}}"; RunOnceId: "StopVncService"; Components: VNC_Server 
+Filename: "certutil.exe"; Parameters: "-delstore trustedpublisher bfee2b83f804ffa94b677f96bbf8de09"; Flags: runhidden; StatusMsg: "Removing trusted publisher..."
+
+Filename: "net"; Parameters: "stop {#VNC_SRV_SERVICE}"; Flags: runhidden; StatusMsg: "{cm:Stopping, {cm:AppName}}"; RunOnceId: "StopVncService"; Components: VNC_Server 
+Filename: "{app}\VNCManager.exe"; Parameters: "-stop_mgr_service"; Flags: runhidden; StatusMsg: "{cm:Stopping, {cm:AppName}}"; RunOnceId: "StopVncMgrService"; Components: VNC_Server 
+
 Filename: "{app}\WinVNC.exe"; Parameters: "-uninstall"; Flags: runhidden; StatusMsg: "{cm:Removing,{cm:AppName}}"; RunOnceId: "RemoveVncService"; Components: VNC_Server 
+Filename: "{app}\VNCManager.exe"; Parameters: "-uninstall_mgr_service"; Flags: runhidden; StatusMsg: "{cm:Removing,{cm:AppName}}"; RunOnceId: "RemoveVncMgrService"; Components: VNC_Server 
+
 Filename: "{syswow64}\netsh"; Parameters: "firewall delete portopening TCP 5900 vnc5900"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
 Filename: "{syswow64}\netsh"; Parameters: "firewall delete portopening TCP 5800 vnc5800"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
+Filename: "{syswow64}\netsh"; Parameters: "firewall delete portopening TCP 15900 vnc15900"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
+Filename: "{syswow64}\netsh"; Parameters: "firewall delete portopening TCP 15800 vnc15800"; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server 
+Filename: "{syswow64}\netsh"; Parameters: "firewall delete allowedprogram program=""{app}\winvnc.exe"""; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server
+Filename: "{syswow64}\netsh"; Parameters: "firewall delete allowedprogram program=""{app}\VNCManager.exe"""; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Server
 ; skipped@tuyj ; Filename: "{syswow64}\netsh"; Parameters: "firewall delete allowedprogram program=""{app}\vncviewer.exe"""; Flags: runhidden; StatusMsg: "{cm:firewall}"; MinVersion: 0,5.01; Components: VNC_Viewer
 
 [_ISTool]

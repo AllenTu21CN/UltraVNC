@@ -78,3 +78,5 @@ addon/ms-logon/authSSP/buildtime.h
 addon/ms-logon/MSLogonACL/buildtime.h
 iss/x64/building
 iss/x32/building
+winvnc/x64/Debug/
+.vscode/
