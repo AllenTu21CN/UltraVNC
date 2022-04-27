@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ext">
+      <UniqueIdentifier>{d1fe9347-6ac7-45d3-9aab-6b2e26bb1217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl">
+      <UniqueIdentifier>{ebebb071-4b3a-4dd3-9ded-2cdbe3c218ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon">
+      <UniqueIdentifier>{f712010c-712e-4787-9d20-c60162c96935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base">
+      <UniqueIdentifier>{2253d4fe-2abb-46e5-8472-a5748ce5c72b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base\encrypt">
+      <UniqueIdentifier>{9f846ab0-5673-4112-8f93-e5335c9a296f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base\gfx">
+      <UniqueIdentifier>{2800d1f3-2be0-4a4e-b356-5f78066f5f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base\io">
+      <UniqueIdentifier>{b37ca835-d715-470e-b18f-941e4fefbcb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base\json">
+      <UniqueIdentifier>{fa22d6d0-92e5-43e1-b23a-061b953168cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base\string">
+      <UniqueIdentifier>{2e2b0fe4-5f96-4b16-8a91-91b10fcfa924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base\types">
+      <UniqueIdentifier>{206d5da7-7ccf-4075-8093-31e760ad0695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\base\win">
+      <UniqueIdentifier>{d4cb9544-7902-466f-af53-5d85753dcb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\media">
+      <UniqueIdentifier>{0bf0fd7e-b9d5-44ec-a56e-1669d52c058c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\avalon\media\base">
+      <UniqueIdentifier>{79bb9908-b676-459d-94c3-1de44c8fb0a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\uvnc_settings">
+      <UniqueIdentifier>{9e6819e4-7e1e-4679-95b7-e0dfada89e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="service">
+      <UniqueIdentifier>{320f746e-125f-4fe4-83b3-1af55cc0d3b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{2c49df7b-20dc-4c01-840d-e67efcca7799}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ext\base\aligned_alloc.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\byte_array.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\byte_fifo.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\clock.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\crash_utils.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\crash_utils_android.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\data_stream.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\errno.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\event_loop.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\global.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\log.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\math_log.c">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\recyclable_object.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\thread.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\url.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\uuid.cpp">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\encrypt\base64.cpp">
+      <Filter>ext\avalon\base\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\encrypt\md5.cpp">
+      <Filter>ext\avalon\base\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\gfx\layout.cpp">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\gfx\style_sheet.cpp">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\io\io_context.cpp">
+      <Filter>ext\avalon\base\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\io\io_device.cpp">
+      <Filter>ext\avalon\base\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\io\timer.cpp">
+      <Filter>ext\avalon\base\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\json\json_object.cpp">
+      <Filter>ext\avalon\base\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\string\string_utils.cpp">
+      <Filter>ext\avalon\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\win\getopt.c">
+      <Filter>ext\avalon\base\win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\media\base\codec_type.cpp">
+      <Filter>ext\avalon\media\base</Filter>
+    </ClCompile>
+    <ClCompile Include="impl\mgr_main.cpp">
+      <Filter>impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\dsmplugin.cpp">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\inifile.cpp">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\security.cpp">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\vncsetauth.cpp">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClCompile>
+    <ClCompile Include="service\service_motor.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="utils\utils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="impl\http_server.cpp">
+      <Filter>impl</Filter>
+    </ClCompile>
+    <ClCompile Include="impl\mgr_looper.cpp">
+      <Filter>impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\encrypt\aes.c">
+      <Filter>ext\avalon\base\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\encrypt.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ext\base\aligned_alloc.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\byte_array.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\byte_fifo.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\clock.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\concurrent_queue.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\crash_utils.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\data_stream.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\debug.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\double_buffer.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\endian.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\errno.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\error_code.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\event_loop.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\frame_rate_statist.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\global.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\log.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\log_helper.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\math_log.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\performance_counter.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\recyclable_object.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\settings.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\thread.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\thread_pool.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\url.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\uuid.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\wait_condition.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\encrypt\base64.h">
+      <Filter>ext\avalon\base\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\encrypt\md5.h">
+      <Filter>ext\avalon\base\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\gfx\alignment.h">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\gfx\color.h">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\gfx\layout.h">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\gfx\point.h">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\gfx\rect.h">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\gfx\size.h">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\gfx\style_sheet.h">
+      <Filter>ext\avalon\base\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\io\io_context.h">
+      <Filter>ext\avalon\base\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\io\io_device.h">
+      <Filter>ext\avalon\base\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\io\timer.h">
+      <Filter>ext\avalon\base\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\json\json_helper.h">
+      <Filter>ext\avalon\base\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\json\json_object.h">
+      <Filter>ext\avalon\base\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\json\json2.hpp">
+      <Filter>ext\avalon\base\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\string\string_utils.h">
+      <Filter>ext\avalon\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\types\ssize_t.h">
+      <Filter>ext\avalon\base\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\win\getopt.h">
+      <Filter>ext\avalon\base\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\media\base\codec_type.h">
+      <Filter>ext\avalon\media\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\httplib.h">
+      <Filter>ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\dsmplugin.h">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\inifile.h">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\stdafx.h">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\vncsetauth.h">
+      <Filter>ext\uvnc_settings</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\utils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\http_server.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\mgr_defines.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\mgr_looper.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\encrypt\aes.h">
+      <Filter>ext\avalon\base\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ext\base\encrypt\aes.hpp">
+      <Filter>ext\avalon\base\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\encrypt.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

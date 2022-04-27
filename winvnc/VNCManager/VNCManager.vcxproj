@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{CB445581-6593-491B-BDD5-59BD7C1ED04D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>VNCManager</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>VNCManager</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>$(SolutionDir)..\zstd-1.4.4\zlibWrapper\;$(SolutionDir)..\zlib;..\ext;..\ext\3rd-party\x86_64\include;$(ProjectDir);$(SolutionDir)..\uvnc_settings2\uvnc_settings;$(IncludePath)</IncludePath>
+    <LibraryPath>..\ext\3rd-party\x86_64\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)..\zstd-1.4.4\zlibWrapper\;$(SolutionDir)..\zlib;..\ext;..\ext\3rd-party\x86_64\include;$(ProjectDir);$(SolutionDir)..\uvnc_settings2\uvnc_settings;$(IncludePath)</IncludePath>
+    <LibraryPath>..\ext\3rd-party\x86_64\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>
+      </SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;__x86__;__WIN32__;WIN32;_WINDOWS;XMD_H;_WINSTATIC;_CRT_SECURE_NO_WARNINGS;_X64;_XZ;OS_WIN=1;WINDOWS;ASIO_MSVC=_MSC_VER;ASIO_WINDOWS;ASIO_STANDALONE;_SCL_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>..\omnithread;..;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <StringPooling>true</StringPooling>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;winmm.lib;version.lib;wtsapi32.lib;userenv.lib;d3d11.lib;dxgi.lib;jansson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>echo canceled: "C:\Program Files (x86)\Windows Kits\8.1\bin\x86\DigiCertUtil .exe" sign /sha1 7686bed45b491e41586b7d2a3c63cbd7e2f3d0ca /noInput   "$(OutDir)$(TargetName)$(TargetExt)"
+copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>
+      </SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;__x86__;__WIN32__;WIN32;_WINDOWS;XMD_H;_WINSTATIC;_CRT_SECURE_NO_WARNINGS;_X64;_XZ;OS_WIN=1;WINDOWS;ASIO_MSVC=_MSC_VER;ASIO_WINDOWS;ASIO_STANDALONE;_SCL_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>..\omnithread;..;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>jansson_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\dsmplugin.cpp" />
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\inifile.cpp" />
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\security.cpp" />
+    <ClCompile Include="..\..\uvnc_settings2\uvnc_settings\vncsetauth.cpp" />
+    <ClCompile Include="..\ext\base\aligned_alloc.cpp" />
+    <ClCompile Include="..\ext\base\byte_array.cpp" />
+    <ClCompile Include="..\ext\base\byte_fifo.cpp" />
+    <ClCompile Include="..\ext\base\clock.cpp" />
+    <ClCompile Include="..\ext\base\crash_utils.cpp" />
+    <ClCompile Include="..\ext\base\crash_utils_android.cpp" />
+    <ClCompile Include="..\ext\base\data_stream.cpp" />
+    <ClCompile Include="..\ext\base\encrypt\aes.c" />
+    <ClCompile Include="..\ext\base\encrypt\base64.cpp" />
+    <ClCompile Include="..\ext\base\encrypt\md5.cpp" />
+    <ClCompile Include="..\ext\base\errno.cpp" />
+    <ClCompile Include="..\ext\base\event_loop.cpp" />
+    <ClCompile Include="..\ext\base\gfx\layout.cpp" />
+    <ClCompile Include="..\ext\base\gfx\style_sheet.cpp" />
+    <ClCompile Include="..\ext\base\global.cpp" />
+    <ClCompile Include="..\ext\base\io\io_context.cpp" />
+    <ClCompile Include="..\ext\base\io\io_device.cpp" />
+    <ClCompile Include="..\ext\base\io\timer.cpp" />
+    <ClCompile Include="..\ext\base\json\json_object.cpp" />
+    <ClCompile Include="..\ext\base\log.cpp" />
+    <ClCompile Include="..\ext\base\math_log.c" />
+    <ClCompile Include="..\ext\base\recyclable_object.cpp" />
+    <ClCompile Include="..\ext\base\string\string_utils.cpp" />
+    <ClCompile Include="..\ext\base\thread.cpp" />
+    <ClCompile Include="..\ext\base\url.cpp" />
+    <ClCompile Include="..\ext\base\uuid.cpp" />
+    <ClCompile Include="..\ext\base\win\getopt.c" />
+    <ClCompile Include="..\ext\media\base\codec_type.cpp" />
+    <ClCompile Include="impl\http_server.cpp" />
+    <ClCompile Include="impl\mgr_looper.cpp" />
+    <ClCompile Include="impl\mgr_main.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="service\service_motor.cpp" />
+    <ClCompile Include="utils\encrypt.cpp" />
+    <ClCompile Include="utils\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\dsmplugin.h" />
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\inifile.h" />
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\stdafx.h" />
+    <ClInclude Include="..\..\uvnc_settings2\uvnc_settings\vncsetauth.h" />
+    <ClInclude Include="..\ext\base\aligned_alloc.h" />
+    <ClInclude Include="..\ext\base\byte_array.h" />
+    <ClInclude Include="..\ext\base\byte_fifo.h" />
+    <ClInclude Include="..\ext\base\clock.h" />
+    <ClInclude Include="..\ext\base\concurrent_queue.h" />
+    <ClInclude Include="..\ext\base\crash_utils.h" />
+    <ClInclude Include="..\ext\base\data_stream.h" />
+    <ClInclude Include="..\ext\base\debug.h" />
+    <ClInclude Include="..\ext\base\double_buffer.h" />
+    <ClInclude Include="..\ext\base\encrypt\aes.h" />
+    <ClInclude Include="..\ext\base\encrypt\aes.hpp" />
+    <ClInclude Include="..\ext\base\encrypt\base64.h" />
+    <ClInclude Include="..\ext\base\encrypt\md5.h" />
+    <ClInclude Include="..\ext\base\endian.h" />
+    <ClInclude Include="..\ext\base\errno.h" />
+    <ClInclude Include="..\ext\base\error_code.h" />
+    <ClInclude Include="..\ext\base\event_loop.h" />
+    <ClInclude Include="..\ext\base\frame_rate_statist.h" />
+    <ClInclude Include="..\ext\base\gfx\alignment.h" />
+    <ClInclude Include="..\ext\base\gfx\color.h" />
+    <ClInclude Include="..\ext\base\gfx\layout.h" />
+    <ClInclude Include="..\ext\base\gfx\point.h" />
+    <ClInclude Include="..\ext\base\gfx\rect.h" />
+    <ClInclude Include="..\ext\base\gfx\size.h" />
+    <ClInclude Include="..\ext\base\gfx\style_sheet.h" />
+    <ClInclude Include="..\ext\base\global.h" />
+    <ClInclude Include="..\ext\base\io\io_context.h" />
+    <ClInclude Include="..\ext\base\io\io_device.h" />
+    <ClInclude Include="..\ext\base\io\timer.h" />
+    <ClInclude Include="..\ext\base\json\json2.hpp" />
+    <ClInclude Include="..\ext\base\json\json_helper.h" />
+    <ClInclude Include="..\ext\base\json\json_object.h" />
+    <ClInclude Include="..\ext\base\log.h" />
+    <ClInclude Include="..\ext\base\log_helper.h" />
+    <ClInclude Include="..\ext\base\math_log.h" />
+    <ClInclude Include="..\ext\base\performance_counter.h" />
+    <ClInclude Include="..\ext\base\recyclable_object.h" />
+    <ClInclude Include="..\ext\base\settings.h" />
+    <ClInclude Include="..\ext\base\string\string_utils.h" />
+    <ClInclude Include="..\ext\base\thread.h" />
+    <ClInclude Include="..\ext\base\thread_pool.h" />
+    <ClInclude Include="..\ext\base\types\ssize_t.h" />
+    <ClInclude Include="..\ext\base\url.h" />
+    <ClInclude Include="..\ext\base\uuid.h" />
+    <ClInclude Include="..\ext\base\wait_condition.h" />
+    <ClInclude Include="..\ext\base\win\getopt.h" />
+    <ClInclude Include="..\ext\httplib.h" />
+    <ClInclude Include="..\ext\media\base\codec_type.h" />
+    <ClInclude Include="impl\http_server.h" />
+    <ClInclude Include="impl\mgr_defines.h" />
+    <ClInclude Include="impl\mgr_looper.h" />
+    <ClInclude Include="utils\encrypt.h" />
+    <ClInclude Include="utils\utils.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
