@@ -1,6 +1,6 @@
 #define AppName "DlxxVnc"
 #define AppID "Dlxxvnc1"
-#define AppVersion "1.0.0"
+#define AppVersion GetFileVersion('x64\building\winvnc.exe')
 #define AppPublisher "dlxx"
 #define AppCopyright "DLXX Team Of JSService" 
 #define AppPublisherURL "http://www.jsservice.cn/"

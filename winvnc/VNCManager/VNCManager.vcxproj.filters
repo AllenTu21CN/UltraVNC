@@ -341,5 +341,9 @@
     </ClInclude>
     <ClInclude Include="..\winvnc\r_version.h" />
     <ClInclude Include="building.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VNCManager.rc" />
   </ItemGroup>
 </Project>

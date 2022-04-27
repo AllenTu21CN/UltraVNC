@@ -124,7 +124,7 @@
 copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(ProjectDir)gen_r_version.bat</Command>
+      <Command>$(ProjectDir)gen_building.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -160,7 +160,7 @@ copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</C
       <AdditionalDependencies>jansson_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>$(ProjectDir)gen_r_version.bat</Command>
+      <Command>$(ProjectDir)gen_building.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -280,8 +280,12 @@ copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</C
     <ClInclude Include="impl\http_server.h" />
     <ClInclude Include="impl\mgr_defines.h" />
     <ClInclude Include="impl\mgr_looper.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="utils\encrypt.h" />
     <ClInclude Include="utils\utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VNCManager.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English resources
+// Ó¢Óï resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_NEUTRAL
@@ -26,12 +26,12 @@ LANGUAGE LANG_ENGLISH, SUBLANG_NEUTRAL
 
 IDB_COLLAPS             BITMAP                  "res\\up.bmp"
 
-#endif    // English resources
+#endif    // Ó¢Óï resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
+// Ó¢Óï(ÃÀ¹ú) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -75,7 +75,7 @@ BEGIN
     LTEXT           " Currently Connected Clients :",IDC_STATIC,5,4,105,8
     LISTBOX         IDC_VIEWERS_LISTBOX,7,16,103,93,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
     PUSHBUTTON      "Kill Client",IDC_KILL_B,118,17,50,14
-    PUSHBUTTON      "Chat with ï¿½ï¿½ï¿½Client",IDC_TEXTCHAT_B,118,35,50,22,BS_MULTILINE
+    PUSHBUTTON      "Chat with Â Â Â Client",IDC_TEXTCHAT_B,118,35,50,22,BS_MULTILINE
     LTEXT           "Pending Clients:",IDC_STATIC,173,4,105,8
     LISTBOX         IDC_PENDING_LISTBOX,175,16,103,93,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
 END
@@ -87,13 +87,13 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         IDB_LOGO64,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-    LTEXT           "UltraVNC Server  g",IDC_VERSION,73,5,145,11
-    LTEXT           "Copyright ï¿½ 2002-2020 UltraVNC Team\nCopyright ï¿½ 2001-2002 Sam - eSVNC \nCopyright ï¿½ 1999-2002 Rudi D. V. - VdaccVNC \nCopyright ï¿½ 2001 Harakan Software - PalmVNC\nCopyright ï¿½ 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
+    LTEXT           "UltraVNC Server  ""r1.0.0",IDC_VERSION,73,5,145,11
+    LTEXT           "Copyright © 2002-2020 UltraVNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttps://www.uvnc.com",IDC_WWW,74,135,201,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
     LTEXT           "BuildTime",IDC_BUILDTIME,97,16,92,10
-    LTEXT           "Copyright ï¿½ 2002 RealVNC Ltd. - RealVNC\nCopyright ï¿½ 1999-2002 Tridia Corporation - TridiaVNC \nCopyright ï¿½ 1994-2001 AT&&T Laboratories Cambridge/Olivetti Research Ltd. - VNC",IDC_STATIC,74,67,203,32
-    LTEXT           "Copyright ï¿½ 1990-2002 Info-ZIP\nCopyright ï¿½ 1996-2002 Markus Franz Xaver Johannes Oberhumer - Mini LZO library",IDC_STATIC,74,99,200,27
+    LTEXT           "Copyright © 2002 RealVNC Ltd. - RealVNC\nCopyright © 1999-2002 Tridia Corporation - TridiaVNC \nCopyright © 1994-2001 AT&&T Laboratories Cambridge/Olivetti Research Ltd. - VNC",IDC_STATIC,74,67,203,32
+    LTEXT           "Copyright © 1990-2002 Info-ZIP\nCopyright © 1996-2002 Markus Franz Xaver Johannes Oberhumer - Mini LZO library",IDC_STATIC,74,99,200,27
 END
 
 IDD_OUTGOING_CONN DIALOGEX 0, 0, 223, 88
@@ -393,8 +393,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,3,2,0
- PRODUCTVERSION 1,3,2,0
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2dL
@@ -412,14 +412,14 @@ BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
             VALUE "FileDescription", "VNC server"
-            VALUE "FileVersion", "1.3.2"
+            VALUE "FileVersion", "1.0.0"
             VALUE "InternalName", "WinVNC"
-            VALUE "LegalCopyright", "Copyright ï¿½ 2020 UltraVNC"
+            VALUE "LegalCopyright", "Copyright © 2020 UltraVNC"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.3.2"
+            VALUE "PrivateBuild", "1.0.0"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.3.2"
+            VALUE "ProductVersion", "1.0.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -586,12 +586,12 @@ BEGIN
     ID_CADPERMISSION        "Permission denied on cad.exe, UltraVNC must be installed in ""program files"" else special cad permission is refused."
 END
 
-#endif    // English (United States) resources
+#endif    // Ó¢Óï(ÃÀ¹ú) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (United Kingdom) resources
+// Ó¢Óï(Ó¢¹ú) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
@@ -622,12 +622,12 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (United Kingdom) resources
+#endif    // Ó¢Óï(Ó¢¹ú) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Dutch (Belgium) resources
+// ºÉÀ¼Óï(±ÈÀûÊ±) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLB)
 LANGUAGE LANG_DUTCH, SUBLANG_DUTCH_BELGIAN
@@ -724,7 +724,7 @@ IDI_WINVNC              ICON                    "res\\world3a.ico"
 
 IDI_FLASH               ICON                    "res\\icon2.ico"
 
-#endif    // Dutch (Belgium) resources
+#endif    // ºÉÀ¼Óï(±ÈÀûÊ±) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

@@ -174,7 +174,7 @@ vncAbout::DialogProc(HWND hwnd,
 			// Insert the build time information
 			extern char buildtime[];
 			SetDlgItemText(hwnd, IDC_BUILDTIME, buildtime);
-			SetDlgItemText(hwnd, IDC_VERSION, "WinVNC Server " R_SHORT_VERSION);
+			SetDlgItemText(hwnd, IDC_VERSION, "WinVNC Server " R_DSP_VERSION);
 
 			// Show the dialog
 			SetForegroundWindow(hwnd);

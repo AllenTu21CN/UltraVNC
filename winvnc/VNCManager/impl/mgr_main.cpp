@@ -210,7 +210,7 @@ static bool checkEnv()
         T_logWinEventI(msg.c_str(), NULL);
     }
 
-    base::_warning("App version: %s-%s-%s", R_SHORT_VERSION, VCS_ID, BUILD_TIME);
+    base::_warning("App version: %s-%s-%s", R_DSP_VERSION, VCS_ID, BUILD_TIME);
 
     sprintf_s(g_ini_path, "%s\\%s", g_app_path, g_ini_name);
     if (!existFile(g_ini_path))
