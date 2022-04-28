@@ -8,6 +8,8 @@
 #endif
 #define APP_NAME "VNCManager"
 
+#define VNC_APP_NAME "WinVNC"
+
 #ifdef EXE_NAME
 #undef EXE_NAME
 #endif

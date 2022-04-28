@@ -1,6 +1,8 @@
+#include "httplib.h"
 #include "stdafx.h"
 #include "utils/utils.h"
 #include "base/log.h"
+#include "base/string/string_utils.h"
 
 #include <time.h>
 #include <stdio.h>
@@ -30,6 +32,7 @@ static bool existFile(char *mychar);
 static void set_service_description();
 static int check_service_status(const char *service_name); // -1=uninstalled 0=stopped 1=running
 static DWORD MessageBoxSecure(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType);
+static int ControlServiceC(const char *service_name, bool start);
 
 ////////////////////////////////////////////////////////////////////////////////
 int install_mgr_service(bool silent)
@@ -337,7 +340,7 @@ void restart_vnc_service()
 		_snprintf(command, sizeof command, "net stop \"%s\"", SRV_SERVICE_NAME);
 		WinExec(command, SW_HIDE);
 
-		Sleep(1);
+		Sleep(1000);
 	}
 	else if (status < 0)
 	{
@@ -348,6 +351,23 @@ void restart_vnc_service()
 	char command[MAX_PATH + 32]; // 29 January 2008 jdp
 	_snprintf(command, sizeof command, "net start \"%s\"", SRV_SERVICE_NAME);
 	WinExec(command, SW_HIDE);
+}
+
+void restart_vnc_service2(int port)
+{
+	std::string url = "http://127.0.0.1:" + base::to_string(port);
+    // 300 milliseconds timeout
+    httplib::Client cli(url);
+    cli.set_connection_timeout(0, 300000);
+    cli.set_read_timeout(0, 300000);
+    cli.set_write_timeout(0, 300000);
+    httplib::Result ret = cli.Post("/exit");
+	if (ret.error() == httplib::Error::Success)
+	{
+		base::_info("restart_vnc_service2: %d/%s", ret.value().status, ret.value().body.c_str());
+	} else {
+		base::_warning("restart_vnc_service2: %s", httplib::to_string(ret.error()).c_str());
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -466,4 +486,138 @@ DWORD MessageBoxSecure(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
 	DWORD retunvalue;
 	retunvalue = MessageBox(hWnd, lpText, lpCaption, uType);
 	return retunvalue;
+}
+
+static int ControlServiceC(const char *service_name, bool start)
+{
+	SC_HANDLE scm = NULL;
+	scm = OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
+	if (!scm)
+	{
+		base::_warning("Failed to open service control manager");
+		return -1;
+	}
+
+	SC_HANDLE service = NULL;
+	service = OpenService(scm, service_name, SERVICE_QUERY_STATUS | SERVICE_START | SERVICE_STOP);
+	if (!service)
+	{
+		CloseServiceHandle(scm);
+
+		DWORD myerror = GetLastError();
+		if (myerror == ERROR_SERVICE_DOES_NOT_EXIST)
+		{
+			base::_warning("Service is not exist(%s)", service_name);
+		}
+		else if (myerror == ERROR_ACCESS_DENIED)
+		{
+			base::_warning("Permission denied(%s)", service_name);
+		}
+		else
+		{
+			base::_warning("Failed to open the service(%s): %d", service_name, myerror);
+		}
+
+		return -1;
+	}
+
+	SERVICE_STATUS serviceStatus;
+	if (!QueryServiceStatus(service, &serviceStatus))
+	{
+		base::_warning("Failed to query service status(%s)", service_name);
+		CloseServiceHandle(service);
+		CloseServiceHandle(scm);
+		return -1;
+	}
+
+	// if service_*_pending then wait for complete operation
+	HANDLE hevent = CreateEvent(0, true, false, _T("dummyevent"));
+	switch (serviceStatus.dwCurrentState)
+	{
+	case SERVICE_START_PENDING:
+	case SERVICE_STOP_PENDING:
+	{
+		for (int i = 0; i < 20; ++i)
+		{
+			if (!QueryServiceStatus(service, &serviceStatus))
+				break;
+			if (serviceStatus.dwCurrentState == SERVICE_RUNNING || serviceStatus.dwCurrentState == SERVICE_STOPPED)
+				break;
+
+			WaitForSingleObject(hevent, 500);
+		}
+		break;
+	}
+	default:
+		break;
+	}
+
+	// operation completed, so change current state
+	if (!QueryServiceStatus(service, &serviceStatus))
+	{
+		base::_warning("Failed to query service status(%s)", service_name);
+		CloseServiceHandle(service);
+		CloseServiceHandle(scm);
+		return -1;
+	}
+
+	switch (serviceStatus.dwCurrentState)
+	{
+	case SERVICE_RUNNING:
+		if (!start) // stop it
+		{
+			if (!ControlService(service, SERVICE_CONTROL_STOP, &serviceStatus))
+			{
+				base::_warning("Stop service(%s) failed", service_name);
+				CloseServiceHandle(service);
+				CloseServiceHandle(scm);
+				return -1;
+			}
+		}
+		break;
+	case SERVICE_STOPPED:
+		if (start) // start it
+		{
+			if (!StartService(service, 0, NULL))
+			{
+				base::_warning("Start service(%s) failed", service_name);
+				CloseServiceHandle(service);
+				CloseServiceHandle(scm);
+				return -1;
+			}
+		}
+		break;
+	default:
+		base::_warning("Service(%s) status unknown status: %d", service_name, serviceStatus.dwCurrentState);
+		return -1;
+	}
+
+	// wait for complete operation
+	for (int i = 0; i < 20; ++i)
+	{
+		if (!QueryServiceStatus(service, &serviceStatus))
+		{
+			base::_warning("Failed to query service status(%s)", service_name);
+			CloseServiceHandle(service);
+			CloseServiceHandle(scm);
+			return -1;
+		}
+
+		if (serviceStatus.dwCurrentState == SERVICE_RUNNING || serviceStatus.dwCurrentState == SERVICE_STOPPED)
+		{
+			// notify scm
+			//ControlService(service, SERVICE_CONTROL_INTERROGATE, &serviceStatus);
+
+			CloseServiceHandle(service);
+			CloseServiceHandle(scm);
+			return 0;
+		}
+
+		WaitForSingleObject(hevent, 500);
+	}
+
+	base::_warning("Failed to control service(%s) status", service_name);
+	CloseServiceHandle(service);
+	CloseServiceHandle(scm);
+	return -1;
 }

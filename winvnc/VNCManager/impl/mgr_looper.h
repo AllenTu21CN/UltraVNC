@@ -52,6 +52,7 @@ protected:
     std::string m_app_path;
     std::string m_plt_addr;
     std::string m_plt_update_path;
+    int m_vnc_internal_port;
 
     int m_port;
     std::string m_passwd, m_passwd2;

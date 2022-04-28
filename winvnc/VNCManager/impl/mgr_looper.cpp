@@ -15,6 +15,7 @@ extern bool is_vnc_service_running();
 extern void start_vnc_service();
 extern void stop_vnc_service();
 extern void restart_vnc_service();
+extern void restart_vnc_service2(int port);
 
 enum MethodEvent : int
 {
@@ -28,6 +29,7 @@ enum MethodEvent : int
 MgrLooper::MgrLooper(IniFile &ini)
     : m_ini(ini), m_timer(getIOContext())
 {
+    m_vnc_internal_port = m_ini.ReadInt(VNC_APP_NAME, "InternalPort", 18481);
     m_heartbeat_callback = std::bind(&MgrLooper::sendHeartbeat, this, std::placeholders::_1);
     startHeartbeat();
 }
@@ -480,7 +482,7 @@ int MgrLooper::doChangePassword(const std::string &old_password, const std::stri
 
     if (restart_service)
     {
-        restart_vnc_service();
+        restart_vnc_service2(m_vnc_internal_port);
     }
 
     return 0;
