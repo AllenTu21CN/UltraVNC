@@ -202,7 +202,7 @@ static bool checkEnv()
 
     if (g_is_service)
     {
-        sprintf_s(g_log_path, "file://%s\\VNCManager.log", g_app_path);
+        sprintf_s(g_log_path, "file://%s\\" APP_NAME ".log", g_app_path);
         base::_set_log_output(g_log_path);
 
         std::string msg = APP_NAME ": redirect log to ";

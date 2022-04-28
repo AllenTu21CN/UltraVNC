@@ -188,10 +188,12 @@ void HttpServer::handleChangePassword(const httplib::Request &req, httplib::Resp
     }
 
     auto p = req.params.find("p");
+    auto r = req.params.find("restart");
     std::string encoded_pwd = p == req.params.end() ? "" : p->second;
+    bool restart_service = (r == req.params.end() ? true : (r->second == "true"));
 
     std::string error;
-    int ret = m_looper.changePassword(encoded_pwd, error);
+    int ret = m_looper.changePassword(encoded_pwd, restart_service, error);
     onRsp("changePassword", ret, error, res);
 }
 
@@ -203,12 +205,14 @@ void HttpServer::handleChangePasswordI(const httplib::Request &req, httplib::Res
     auto p0 = req.params.find("p0");
     auto p1 = req.params.find("p1");
     auto p2 = req.params.find("p2");
+    auto r = req.params.find("restart");
     std::string password0 = p0 == req.params.end() ? "" : p0->second;
     std::string password1 = p1 == req.params.end() ? "" : p1->second;
     std::string password2 = p2 == req.params.end() ? "" : p2->second;
+    bool restart_service = (r == req.params.end() ? true : (r->second == "true"));
 
     std::string error;
-    int ret = m_looper.changePasswordI(password0, password1, password2, error);
+    int ret = m_looper.changePasswordI(password0, password1, password2, restart_service, error);
     onRsp("changePassword", ret, error, res);
 }
 

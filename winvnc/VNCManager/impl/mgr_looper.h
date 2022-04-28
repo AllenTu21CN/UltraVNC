@@ -20,10 +20,12 @@ public:
     int queryStatus(VNCStatusE &status, std::string &error);
     int queryStatusI(VNCStatus &status, std::string &error);
 
-    int changePassword(const std::string &encoded_password, std::string &error);
+    int changePassword(const std::string &encoded_password,
+                       bool restart_service, std::string &error);
 
     int changePasswordI(const std::string &old_password, const std::string &new_password,
-                        const std::string &new_password2, std::string &error);
+                        const std::string &new_password2, bool restart_service,
+                        std::string &error);
 
     void stopHttpServer(int port);
 
@@ -33,10 +35,12 @@ protected:
     void startHeartbeat();
     void sendHeartbeat(int error);
 
-    int doChangePassword(const std::string &encoded_password, std::string &error);
+    int doChangePassword(const std::string &encoded_password,
+                         bool restart_service, std::string &error);
 
     int doChangePassword(const std::string &old_password, const std::string &new_password,
-                          const std::string &new_password2, std::string &error);
+                         const std::string &new_password2, bool restart_service,
+                         std::string &error);
 
     std::function<void(int)> m_heartbeat_callback;
 

@@ -12,6 +12,9 @@ static const int HEARTBEAT_INTERVAL_SEC = 3;
 extern int vncEncryptPasswd(char *passwd, char *encryptedPasswd);
 extern char *vncDecryptPasswd(char *inouttext);
 extern bool is_vnc_service_running();
+extern void start_vnc_service();
+extern void stop_vnc_service();
+extern void restart_vnc_service();
 
 enum MethodEvent : int
 {
@@ -84,7 +87,7 @@ int MgrLooper::queryStatusI(VNCStatus &status, std::string &error)
     return evt.arg1;
 }
 
-int MgrLooper::changePassword(const std::string &encoded_password, std::string &error)
+int MgrLooper::changePassword(const std::string &encoded_password, bool restart_service, std::string &error)
 {
     if (m_heartbeat_callback == NULL)
     {
@@ -93,7 +96,7 @@ int MgrLooper::changePassword(const std::string &encoded_password, std::string &
     }
 
     std::string in_out = encoded_password;
-    Event evt(EVENT_CHANGE_PASSWORD, -1, -1, &in_out);
+    Event evt(EVENT_CHANGE_PASSWORD, (restart_service ? 1 : 0), -1, &in_out);
     if (postEvent(evt, true) != 0)
     {
         base::_warning("sync to postEvent failed");
@@ -107,7 +110,7 @@ int MgrLooper::changePassword(const std::string &encoded_password, std::string &
 }
 
 int MgrLooper::changePasswordI(const std::string &old_password, const std::string &new_password,
-                               const std::string &new_password2, std::string &error)
+                               const std::string &new_password2, bool restart_service, std::string &error)
 {
     if (m_heartbeat_callback == NULL)
     {
@@ -116,7 +119,7 @@ int MgrLooper::changePasswordI(const std::string &old_password, const std::strin
     }
 
     std::vector<std::string> passwords = {old_password, new_password, new_password2};
-    Event evt(EVENT_CHANGE_PASSWORD_I, -1, -1, &passwords);
+    Event evt(EVENT_CHANGE_PASSWORD_I, (restart_service ? 1 : 0), -1, &passwords);
     if (postEvent(evt, true) != 0)
     {
         base::_warning("sync to postEvent failed");
@@ -182,9 +185,10 @@ void MgrLooper::onEvent(const Event &event)
     case EVENT_CHANGE_PASSWORD:
     {
         std::string &encoded_password = *((std::string *)pevt->obj);
+        bool restart_service = pevt->arg1 != 0;
 
         std::string error;
-        pevt->arg1 = doChangePassword(encoded_password, error);
+        pevt->arg1 = doChangePassword(encoded_password, restart_service, error);
         if (pevt->arg1 != 0)
         {
             // reuse encoded_password to restore error message
@@ -195,9 +199,10 @@ void MgrLooper::onEvent(const Event &event)
     case EVENT_CHANGE_PASSWORD_I:
     {
         std::vector<std::string> &passwords = *((std::vector<std::string> *)pevt->obj);
+        bool restart_service = pevt->arg1 != 0;
 
         std::string error;
-        pevt->arg1 = doChangePassword(passwords[0], passwords[1], passwords[2], error);
+        pevt->arg1 = doChangePassword(passwords[0], passwords[1], passwords[2], restart_service, error);
         if (pevt->arg1 != 0)
         {
             // reuse passwords[0] to restore error message
@@ -317,10 +322,10 @@ void MgrLooper::sendHeartbeat(int error)
         if (m_plt_addr.empty())
         {
             char addr[128] = {0};
-            m_ini.ReadString("VNCManager", "PltAddr", addr, 128);
+            m_ini.ReadString(APP_NAME, "PltAddr", addr, 128);
             if (addr[0] == 0)
             {
-                m_ini.WriteString("VNCManager", "PltAddr", "");
+                m_ini.WriteString(APP_NAME, "PltAddr", "");
             }
             else
             {
@@ -330,10 +335,10 @@ void MgrLooper::sendHeartbeat(int error)
         if (m_plt_update_path.empty())
         {
             char path[256] = {0};
-            m_ini.ReadString("VNCManager", "UpdatePath", path, 256);
+            m_ini.ReadString(APP_NAME, "UpdateStatusPath", path, 256);
             if (path[0] == 0)
             {
-                m_ini.WriteString("VNCManager", "UpdatePath", "");
+                m_ini.WriteString(APP_NAME, "UpdateStatusPath", "");
             }
             else
             {
@@ -366,7 +371,7 @@ void MgrLooper::sendHeartbeat(int error)
     startHeartbeat();
 }
 
-int MgrLooper::doChangePassword(const std::string &encoded_password, std::string &error)
+int MgrLooper::doChangePassword(const std::string &encoded_password, bool restart_service, std::string &error)
 {
     if (encoded_password.empty())
     {
@@ -414,11 +419,11 @@ int MgrLooper::doChangePassword(const std::string &encoded_password, std::string
         return -1;
     }
 
-    return doChangePassword(strs[0], strs[1], strs[2], error);
+    return doChangePassword(strs[0], strs[1], strs[2], restart_service, error);
 }
 
 int MgrLooper::doChangePassword(const std::string &old_password, const std::string &new_password,
-                                const std::string &new_password2, std::string &error)
+                                const std::string &new_password2, bool restart_service, std::string &error)
 {
     if (new_password.empty() || new_password2.empty())
     {
@@ -457,6 +462,11 @@ int MgrLooper::doChangePassword(const std::string &old_password, const std::stri
         }
     }
 
+    if (m_passwd == new_password && m_passwd2 == new_password2)
+    {
+        return 0;
+    }
+
     { // restore the new password
         base::_warning("Change password");
 
@@ -466,6 +476,11 @@ int MgrLooper::doChangePassword(const std::string &old_password, const std::stri
 
         vncEncryptPasswd((char *)new_password2.c_str(), encryptedPasswd);
         m_ini.WritePassword2(encryptedPasswd);
+    }
+
+    if (restart_service)
+    {
+        restart_vnc_service();
     }
 
     return 0;

@@ -28,7 +28,7 @@ static char service_file[MAX_PATH];
 static int pad();
 static bool existFile(char *mychar);
 static void set_service_description();
-static int check_service_status(const char *service_name);
+static int check_service_status(const char *service_name); // -1=uninstalled 0=stopped 1=running
 static DWORD MessageBoxSecure(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@ int install_mgr_service(bool silent)
 		base::_warning("File not found %s", service_file);
 		if (!silent)
 		{
-			MessageBoxSecure(NULL, "Not found VNCManager.exe",
+			MessageBoxSecure(NULL, "Not found " EXE_NAME,
 							 APP_NAME, MB_ICONERROR);
 		}
 		return 1;
@@ -290,6 +290,66 @@ bool is_vnc_service_running()
 	return check_service_status(SRV_SERVICE_NAME) > 0;
 }
 
+void start_vnc_service()
+{
+	int status = check_service_status(SRV_SERVICE_NAME);
+	if (status == 0)
+	{
+		char command[MAX_PATH + 32]; // 29 January 2008 jdp
+		_snprintf(command, sizeof command, "net start \"%s\"", SRV_SERVICE_NAME);
+		WinExec(command, SW_HIDE);
+	}
+	else if (status < 0)
+	{
+		base::_info("service is not installed or unavailable");
+	}
+	else
+	{
+		base::_info("serivce is started");
+	}
+}
+
+void stop_vnc_service()
+{
+	int status = check_service_status(SRV_SERVICE_NAME);
+	if (status > 0)
+	{
+		char command[MAX_PATH + 32]; // 29 January 2008 jdp
+		_snprintf(command, sizeof command, "net stop \"%s\"", SRV_SERVICE_NAME);
+		WinExec(command, SW_HIDE);
+	}
+	else if (status == 0)
+	{
+		base::_info("service is stopped");
+	}
+	else
+	{
+		base::_info("service is not installed or unavailable");
+	}
+}
+
+void restart_vnc_service()
+{
+	int status = check_service_status(SRV_SERVICE_NAME);
+	if (status > 0)
+	{
+		char command[MAX_PATH + 32]; // 29 January 2008 jdp
+		_snprintf(command, sizeof command, "net stop \"%s\"", SRV_SERVICE_NAME);
+		WinExec(command, SW_HIDE);
+
+		Sleep(1);
+	}
+	else if (status < 0)
+	{
+		base::_info("service is not installed or unavailable");
+		return;
+	}
+
+	char command[MAX_PATH + 32]; // 29 January 2008 jdp
+	_snprintf(command, sizeof command, "net start \"%s\"", SRV_SERVICE_NAME);
+	WinExec(command, SW_HIDE);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 static int pad()
 {
@@ -352,6 +412,7 @@ static void set_service_description()
 	RegCloseKey(hKey);
 }
 
+// -1=uninstalled 0=stopped 1=running
 static int check_service_status(const char *service_name)
 {
 	SC_HANDLE scm, service;
