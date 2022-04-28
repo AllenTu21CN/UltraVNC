@@ -166,6 +166,9 @@
     <ClCompile Include="utils\encrypt.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\ext\base\strptime.c">
+      <Filter>ext\avalon\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ext\base\aligned_alloc.h">
@@ -342,6 +345,9 @@
     <ClInclude Include="..\winvnc\r_version.h" />
     <ClInclude Include="building.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="..\ext\base\strptime.h">
+      <Filter>ext\avalon\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VNCManager.rc" />

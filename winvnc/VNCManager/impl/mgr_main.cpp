@@ -18,7 +18,6 @@ static const int DEF_HTTP_PORT = 18480;
 static bool g_is_service = false;
 static char g_app_path[MAX_PATH] = {0};
 static char g_ini_path[MAX_PATH] = {0};
-static char g_log_path[MAX_PATH] = {0};
 static int g_http_port;
 static char g_uuid[64] = {0};
 
@@ -73,6 +72,9 @@ void loop_main(bool is_service)
 
     g_looper.quit();
     base::_info("mgr loop exit...");
+
+    // trigger to release internal sink
+    base::_set_log_sink(NULL);
 }
 
 void WINAPI service_entry(int argc, char **argv)
@@ -202,12 +204,13 @@ static bool checkEnv()
 
     if (g_is_service)
     {
-        sprintf_s(g_log_path, "file://%s\\" APP_NAME ".log", g_app_path);
-        base::_set_log_output(g_log_path);
+        char log_uri[MAX_PATH] = {0};
+        sprintf_s(log_uri, "rot://%s\\log\\%s.log:100000000:86400:-1", g_app_path, APP_NAME);
+        base::_set_log_output(log_uri);
 
-        std::string msg = APP_NAME ": redirect log to ";
-        msg += g_log_path;
-        T_logWinEventI(msg.c_str(), NULL);
+        char log_hint[MAX_PATH*2] = {0};
+        snprintf(log_hint, MAX_PATH*2-1, APP_NAME ": redirect log to file://%s\\log\\%s.log", g_app_path, APP_NAME);
+        T_logWinEventI(log_hint, NULL);
     }
 
     base::_warning("App version: %s-%s-%s", R_DSP_VERSION, VCS_ID, BUILD_TIME);

@@ -53,9 +53,6 @@
     <ClCompile Include="..\ext\base\encrypt\base64.cpp">
       <Filter>ext</Filter>
     </ClCompile>
-    <ClCompile Include="..\ext\base\log.cpp">
-      <Filter>ext</Filter>
-    </ClCompile>
     <ClCompile Include="..\ext\base\thread.cpp">
       <Filter>ext</Filter>
     </ClCompile>
@@ -63,6 +60,9 @@
       <Filter>ext</Filter>
     </ClCompile>
     <ClCompile Include="..\ext\base\encrypt\aes.c">
+      <Filter>ext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ext\base\log2.cpp">
       <Filter>ext</Filter>
     </ClCompile>
   </ItemGroup>

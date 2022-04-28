@@ -151,7 +151,7 @@ void MgrLooper::onEvent(const Event &event)
     case EVENT_QUERY_STATUS:
     {
         char password_pair[8 + 8 + 2] = {0};
-        snprintf(password_pair, 8 + 8 + 2, "%s %s", m_passwd, m_passwd2);
+        snprintf(password_pair, 8 + 8 + 2, "%s %s", m_passwd.c_str(), m_passwd2.c_str());
         std::string pub_key_path = m_app_path + "\\plt_rsa_pub_pkcs8.pem";
         std::string base64;
 
@@ -415,7 +415,7 @@ int MgrLooper::doChangePassword(const std::string &encoded_password, bool restar
     base::string_split(" ", password_pair, strs);
     if (strs.size() != 3)
     {
-        error = "Invalid params: The password_pair cannot contain any space";
+        error = "Invalid params: the current password is not correct or the password_pair contains space";
         return -1;
     }
 

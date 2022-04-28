@@ -169,7 +169,7 @@ copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\iss\x64\building"</C
   <ItemGroup>
     <ClCompile Include="..\ext\base\encrypt\aes.c" />
     <ClCompile Include="..\ext\base\encrypt\base64.cpp" />
-    <ClCompile Include="..\ext\base\log.cpp" />
+    <ClCompile Include="..\ext\base\log2.cpp" />
     <ClCompile Include="..\ext\base\thread.cpp" />
     <ClCompile Include="..\VNCManager\utils\encrypt.cpp" />
     <ClCompile Include="DummyHttpServer.cpp" />

@@ -426,6 +426,7 @@ begin
 end;
 
 [Dirs]
+Name:"{app}\log"
 
 [InnoIDE_Settings]
 LogFileOverwrite=false
